@@ -12,6 +12,7 @@
   <tbody>
     <% @recommendation_types.each do |recommendation_type| %>
       <tr>
+      	<td><%= recommendation_type.id %></td>
         <td><%= recommendation_type.type %></td>
         <td><%= recommendation_type.descr %></td>
         <td><%= link_to 'Show', recommendation_type %></td>

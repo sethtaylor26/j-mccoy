@@ -13,6 +13,7 @@
   <tbody>
     <% @recommenders.each do |recommender| %>
       <tr>
+        <td><%= recommender.id %></td>
         <td><%= recommender.first_name %></td>
         <td><%= recommender.last_name %></td>
         <td><%= recommender.desc %></td>
