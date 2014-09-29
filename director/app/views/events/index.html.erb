@@ -38,7 +38,7 @@
         <td><%= event.address %></td>
         <td><%= event.spice %></td>
         <td><%= event.cost %></td>
-        <td><%= event.recommender %></td>
+        <td><%= event.recommender.first_name %> <%= event.recommender.last_name %></td>
         <td><%= event.image_url %></td>
         <td><%= event.comments %></td>
         <td><%= link_to 'Show', event %></td>
