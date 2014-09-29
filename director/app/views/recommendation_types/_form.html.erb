@@ -1,0 +1,25 @@
+<%= form_for(@recommendation_type) do |f| %>
+  <% if @recommendation_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recommendation_type.errors.count, "error") %> prohibited this recommendation_type from being saved:</h2>
+
+      <ul>
+      <% @recommendation_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :descr %><br>
+    <%= f.text_area :descr %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

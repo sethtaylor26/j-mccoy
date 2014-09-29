@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_type_id: 
+  start_time: 2014-09-28 17:19:53
+  end_time: 2014-09-28 17:19:53
+  title: MyString
+  short_review: MyString
+  long_review: MyText
+  web_site_url: MyString
+  location_lat: 1.5
+  location_long: 1.5
+  address: MyString
+  spice: 1
+  cost: 1
+  recommender_id: 
+  image_url: MyString
+  comments: MyText
+
+two:
+  event_type_id: 
+  start_time: 2014-09-28 17:19:53
+  end_time: 2014-09-28 17:19:53
+  title: MyString
+  short_review: MyString
+  long_review: MyText
+  web_site_url: MyString
+  location_lat: 1.5
+  location_long: 1.5
+  address: MyString
+  spice: 1
+  cost: 1
+  recommender_id: 
+  image_url: MyString
+  comments: MyText

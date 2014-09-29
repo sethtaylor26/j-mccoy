@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @recommender.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @recommender.last_name %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @recommender.desc %>
+</p>
+
+<%= link_to 'Edit', edit_recommender_path(@recommender) %> |
+<%= link_to 'Back', recommenders_path %>
