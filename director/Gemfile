@@ -40,4 +40,3 @@ gem 'spring',        group: :development
 
 # Auth
 gem 'devise'
-
