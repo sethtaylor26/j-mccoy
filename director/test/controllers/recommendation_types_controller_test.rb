@@ -18,7 +18,7 @@ class RecommendationTypesControllerTest < ActionController::TestCase
 
   test "should create recommendation_type" do
     assert_difference('RecommendationType.count') do
-      post :create, recommendation_type: { descr: @recommendation_type.descr, type: @recommendation_type.type }
+      post :create, recommendation_type: { descr: @recommendation_type.descr, rec_type: @recommendation_type.rec_type }
     end
 
     assert_redirected_to recommendation_type_path(assigns(:recommendation_type))
@@ -35,7 +35,7 @@ class RecommendationTypesControllerTest < ActionController::TestCase
   end
 
   test "should update recommendation_type" do
-    patch :update, id: @recommendation_type, recommendation_type: { descr: @recommendation_type.descr, type: @recommendation_type.type }
+    patch :update, id: @recommendation_type, recommendation_type: { descr: @recommendation_type.descr, rec_type: @recommendation_type.rec_type }
     assert_redirected_to recommendation_type_path(assigns(:recommendation_type))
   end
 

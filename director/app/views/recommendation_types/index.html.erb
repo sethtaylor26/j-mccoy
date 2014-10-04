@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
+      <th>Rec type</th>
       <th>Descr</th>
       <th colspan="3"></th>
     </tr>
@@ -12,8 +12,7 @@
   <tbody>
     <% @recommendation_types.each do |recommendation_type| %>
       <tr>
-      	<td><%= recommendation_type.id %></td>
-        <td><%= recommendation_type.type %></td>
+        <td><%= recommendation_type.rec_type %></td>
         <td><%= recommendation_type.descr %></td>
         <td><%= link_to 'Show', recommendation_type %></td>
         <td><%= link_to 'Edit', edit_recommendation_type_path(recommendation_type) %></td>
@@ -26,3 +25,13 @@
 <br>
 
 <%= link_to 'New Recommendation type', new_recommendation_type_path %>
+
+<ul class="nav pull-right">	
+  <li><%= link_to "Home",         root_path %></li>
+  <% if user_signed_in? %>
+  <li><%= link_to "Profile", edit_user_registration_path %></li>
+  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+  <% else %>
+  <li><%= link_to "Sign in", new_user_session_path %></li>
+  <% end %>
+</ul>

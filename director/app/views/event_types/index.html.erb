@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Type</th>
       <th>Parent</th>
       <th>Image</th>
@@ -12,11 +13,11 @@
 
   <tbody>
     <% @event_types.each do |event_type| %>
-      <tr>
+      <tr valign="top">
         <td><%= event_type.id %></td>
         <td><%= event_type.Type %></td>
         <td><%= event_type.Parent %></td>
-        <td><%= event_type.Image %></td>
+        <td><%= image_tag(event_type.Image, size: "150x200") %></td>
         <td><%= link_to 'Show', event_type %></td>
         <td><%= link_to 'Edit', edit_event_type_path(event_type) %></td>
         <td><%= link_to 'Destroy', event_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -28,3 +29,13 @@
 <br>
 
 <%= link_to 'New Event type', new_event_type_path %>
+
+<ul class="nav pull-right">	
+  <li><%= link_to "Home",         root_path %></li>
+  <% if user_signed_in? %>
+  <li><%= link_to "Profile", edit_user_registration_path %></li>
+  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+  <% else %>
+  <li><%= link_to "Sign in", new_user_session_path %></li>
+  <% end %>
+</ul>

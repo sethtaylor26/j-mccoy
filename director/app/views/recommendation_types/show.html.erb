@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @recommendation_type.type %>
+  <strong>Rec type:</strong>
+  <%= @recommendation_type.rec_type %>
 </p>
 
 <p>
@@ -12,3 +12,13 @@
 
 <%= link_to 'Edit', edit_recommendation_type_path(@recommendation_type) %> |
 <%= link_to 'Back', recommendation_types_path %>
+
+<ul class="nav pull-right">	
+  <li><%= link_to "Home",         root_path %></li>
+  <% if user_signed_in? %>
+  <li><%= link_to "Profile", edit_user_registration_path %></li>
+  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+  <% else %>
+  <li><%= link_to "Sign in", new_user_session_path %></li>
+  <% end %>
+</ul>

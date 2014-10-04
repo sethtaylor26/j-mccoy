@@ -69,6 +69,6 @@ class RecommendationTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recommendation_type_params
-      params.require(:recommendation_type).permit(:type, :descr)
+      params.require(:recommendation_type).permit(:rec_type, :descr)
     end
 end

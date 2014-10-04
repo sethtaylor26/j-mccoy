@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :recommendation_types
+
   devise_scope :users do
     #post "api/v1/register" => "api/registrations#create"
     match "api/register" => "api/registrations#create", via: :post
@@ -9,8 +11,6 @@ Rails.application.routes.draw do
   devise_for :users
   
   resources :events
-
-  resources :recommendation_types
 
   resources :recommenders
 

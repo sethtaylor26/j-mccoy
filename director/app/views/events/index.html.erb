@@ -1,8 +1,9 @@
 <h1>Listing events</h1>
 
-<table>
+<table border="1">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Event type</th>
       <th>Start time</th>
       <th>End time</th>
@@ -26,7 +27,7 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.id %></td>
-        <td><%= event.event_type %></td>
+        <td><%= event.event_type.Type %></td>
         <td><%= event.start_time %></td>
         <td><%= event.end_time %></td>
         <td><%= event.title %></td>
@@ -52,3 +53,13 @@
 <br>
 
 <%= link_to 'New Event', new_event_path %>
+
+<ul class="nav pull-right">	
+  <li><%= link_to "Home",         root_path %></li>
+  <% if user_signed_in? %>
+  <li><%= link_to "Profile", edit_user_registration_path %></li>
+  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+  <% else %>
+  <li><%= link_to "Sign in", new_user_session_path %></li>
+  <% end %>
+</ul>
