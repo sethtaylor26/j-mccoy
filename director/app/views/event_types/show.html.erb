@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Type:</strong>
-  <%= @event_type.Type %>
+  <strong>Event Type Name:</strong>
+  <%= @event_type.event_type_name %>
 </p>
 
 <p>
   <strong>Parent:</strong>
-  <%= @event_type.Parent %>
+  <%= @event_type.parent %>
 </p>
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag(@event_type.Image, size: "150x200") %>
+  <%= image_tag(@event_type.image, size: "150x200") %>
 </p>
 
 <%= link_to 'Edit', edit_event_type_path(@event_type) %> |

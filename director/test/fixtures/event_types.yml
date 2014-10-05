@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  Type: MyString
+  event_type_name: MyString
   Parent: 1
   Image: MyString
 
 two:
-  Type: MyString
+  event_type_name: MyString
   Parent: 1
   Image: MyString
