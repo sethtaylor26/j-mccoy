@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @potential_answer.questions.question %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @potential_answer.answer %>
+</p>
+
+<p>
+  <strong>Answer weight:</strong>
+  <%= @potential_answer.answer_weight %>
+</p>
+
+<%= link_to 'Edit', edit_potential_answer_path(@potential_answer) %> |
+<%= link_to 'Back', potential_answers_path %>

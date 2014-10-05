@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005161347) do
+ActiveRecord::Schema.define(version: 20141005173412) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 20141005161347) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "event_type_answer_weights", force: true do |t|
+    t.integer  "potential_answer_id"
+    t.integer  "event_type_id"
+    t.integer  "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_type_answer_weights", ["event_type_id"], name: "index_event_type_answer_weights_on_event_type_id"
+  add_index "event_type_answer_weights", ["potential_answer_id"], name: "index_event_type_answer_weights_on_potential_answer_id"
 
   create_table "event_types", force: true do |t|
     t.string   "event_type_name"
@@ -61,6 +72,23 @@ ActiveRecord::Schema.define(version: 20141005161347) do
 
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id"
   add_index "events", ["recommender_id"], name: "index_events_on_recommender_id"
+
+  create_table "potential_answers", force: true do |t|
+    t.integer  "questions_id"
+    t.text     "answer"
+    t.integer  "answer_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "potential_answers", ["questions_id"], name: "index_potential_answers_on_questions_id"
+
+  create_table "questions", force: true do |t|
+    t.text     "question"
+    t.string   "question_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "recommendation_types", force: true do |t|
     t.string   "rec_type"

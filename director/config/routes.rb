@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  resources :event_type_answer_weights
+
+  resources :potential_answers
+
+  resources :questions
+
   resources :recommendation_types
 
   devise_scope :users do
