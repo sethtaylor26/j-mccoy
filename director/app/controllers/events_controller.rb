@@ -12,6 +12,11 @@ class EventsController < ApplicationController
 	@events = @events.spice(params[:spice]) if params[:spice].present?
   end
 
+  def import
+    Event.import(params[:file])
+    redirect_to events_url, notice: "Events imported."
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show

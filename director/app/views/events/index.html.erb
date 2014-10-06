@@ -50,6 +50,13 @@
   </tbody>
 </table>
 
+<h2>Import Products</h2>
+
+<%= form_tag import_events_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
 <br>
 
 <%= link_to 'New Event', new_event_path %>
