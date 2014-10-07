@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :event_type_answer_weights
+  resources :event_type_answer_weights do
+    collection { post :import }
+  end
 
   resources :potential_answers
 

@@ -10,11 +10,6 @@ class Event < ActiveRecord::Base
   scope :spice, -> (spice) { where("spice <= ?", spice) }
   scope :title, lambda{|l|  where("title LIKE :l", l: "%#{l}%")}
   
-  #def self.search(query)
-  
-  #	where("title like ?", "%#{query}%")
-  #end
-  
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)

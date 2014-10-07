@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  questions_id: 
+  question: one
   answer: MyText
   answer_weight: 1
 
 two:
-  questions_id: 
+  question: two
   answer: MyText
-  answer_weight: 1
+  answer_weight: 4

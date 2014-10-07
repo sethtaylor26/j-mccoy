@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141005173412) do
+ActiveRecord::Schema.define(version: 20141006184548) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -74,14 +74,14 @@ ActiveRecord::Schema.define(version: 20141005173412) do
   add_index "events", ["recommender_id"], name: "index_events_on_recommender_id"
 
   create_table "potential_answers", force: true do |t|
-    t.integer  "questions_id"
+    t.integer  "question_id"
     t.text     "answer"
     t.integer  "answer_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "potential_answers", ["questions_id"], name: "index_potential_answers_on_questions_id"
+  add_index "potential_answers", ["question_id"], name: "index_potential_answers_on_question_id"
 
   create_table "questions", force: true do |t|
     t.text     "question"

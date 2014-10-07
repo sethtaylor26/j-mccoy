@@ -30,6 +30,13 @@
 
 <%= link_to 'New Event type answer weight', new_event_type_answer_weight_path %>
 
+<h2>Import weights</h2>
+
+<%= form_tag import_event_type_answer_weights_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
 <ul class="nav pull-right">	
   <li><%= link_to "Home",         root_path %></li>
   <% if user_signed_in? %>

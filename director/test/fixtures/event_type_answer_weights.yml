@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  potential_answer_id: 
-  event_type_id: 
+  potential_answer: one
+  event_type: one
   weight: 1
 
 two:
-  potential_answer_id: 
-  event_type_id: 
-  weight: 1
+  potential_answer: two
+  event_type: two
+  weight: 4

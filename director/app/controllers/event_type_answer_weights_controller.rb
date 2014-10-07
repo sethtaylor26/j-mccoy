@@ -7,6 +7,11 @@ class EventTypeAnswerWeightsController < ApplicationController
     @event_type_answer_weights = EventTypeAnswerWeight.all
   end
 
+  def import
+    EventTypeAnswerWeight.import(params[:file])
+    redirect_to root_url, notice: "Weights imported."
+  end
+
   # GET /event_type_answer_weights/1
   # GET /event_type_answer_weights/1.json
   def show

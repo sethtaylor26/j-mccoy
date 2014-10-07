@@ -15,7 +15,7 @@
     <% @potential_answers.each do |potential_answer| %>
       <tr>
         <td><%= potential_answer.id %></td>
-        <td><%= potential_answer.questions.id %> - <%= potential_answer.questions.question %></td>
+        <td><%= potential_answer.question.id %> - <%= potential_answer.question.question %></td>
         <td><%= potential_answer.answer %></td>
         <td><%= potential_answer.answer_weight %></td>
         <td><%= link_to 'Show', potential_answer %></td>
