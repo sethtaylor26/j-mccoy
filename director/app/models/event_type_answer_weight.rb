@@ -8,7 +8,7 @@ class EventTypeAnswerWeight < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       event_type_answer_weight = find_by_id(row["id"]) || new
-      event_type_answer_weight.attributes = row.to_hash.slice(*EventTypeAnswerWeight.accessible_attributes)
+      event_type_answer_weight.attributes = row.to_hash.slice(*EventTypeAnswerWeight.attribute_names())
       event_type_answer_weight.save!
     end
   end

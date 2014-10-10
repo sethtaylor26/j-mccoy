@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :user_answers
+
   resources :event_type_answer_weights do
     collection { post :import }
   end
@@ -24,7 +26,9 @@ Rails.application.routes.draw do
 
   resources :recommenders
 
-  resources :event_types
+  resources :event_types do
+    collection { post :import }
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  event_type_id: one
+  event_type: one
   start_time: 2014-09-28 17:19:53
   end_time: 2014-09-28 17:19:53
   title: MyString
@@ -13,12 +13,12 @@ one:
   address: MyString
   spice: 1
   cost: 1
-  recommender_id: one
+  recommender: one
   image_url: MyString
   comments: MyText
 
 two:
-  event_type_id: two
+  event_type: two
   start_time: 2014-09-28 17:19:53
   end_time: 2014-09-28 17:19:53
   title: MyString
@@ -30,6 +30,6 @@ two:
   address: MyString
   spice: 1
   cost: 1
-  recommender_id: two
+  recommender: two
   image_url: MyString
   comments: MyText

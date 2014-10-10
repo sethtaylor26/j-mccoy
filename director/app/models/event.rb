@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
-  belongs_to :event_type
   validates :event_type_id, presence: true
-  
+    
+  belongs_to :event_type
   belongs_to :recommender
   
   scope :start_time, -> (start_time) { where("start_time >= ?", start_time) }

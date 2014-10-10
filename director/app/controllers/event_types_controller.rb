@@ -7,6 +7,11 @@ class EventTypesController < ApplicationController
     @event_types = EventType.all
   end
 
+  def import
+    EventType.import(params[:file])
+    redirect_to event_types_url, notice: "Event Types imported."
+  end
+
   # GET /event_types/1
   # GET /event_types/1.json
   def show

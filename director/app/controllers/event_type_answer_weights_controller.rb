@@ -9,7 +9,7 @@ class EventTypeAnswerWeightsController < ApplicationController
 
   def import
     EventTypeAnswerWeight.import(params[:file])
-    redirect_to root_url, notice: "Weights imported."
+    redirect_to event_type_answer_weights_url, notice: "Weights imported."
   end
 
   # GET /event_type_answer_weights/1

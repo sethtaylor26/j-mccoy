@@ -17,7 +17,8 @@
         <td><%= event_type.id %></td>
         <td><%= event_type.event_type_name %></td>
         <td><%= event_type.parent %></td>
-        <td><%= image_tag(event_type.image, size: "150x200") %></td>
+        <!--td><%= image_tag(event_type.image, size: "150x200") %></td-->
+        <td><%= event_type.image %></td>
         <td><%= link_to 'Show', event_type %></td>
         <td><%= link_to 'Edit', edit_event_type_path(event_type) %></td>
         <td><%= link_to 'Destroy', event_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,6 +30,13 @@
 <br>
 
 <%= link_to 'New Event type', new_event_type_path %>
+
+<h2>Import Event types</h2>
+
+<%= form_tag import_event_types_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
 
 <ul class="nav pull-right">	
   <li><%= link_to "Home",         root_path %></li>
