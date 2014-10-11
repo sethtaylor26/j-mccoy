@@ -69,6 +69,6 @@ class RecommendersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recommender_params
-      params.require(:recommender).permit(:first_name, :last_name, :desc)
+      params.require(:recommender).permit(:first_name, :last_name, :descr)
     end
 end

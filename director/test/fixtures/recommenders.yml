@@ -3,9 +3,9 @@
 one:
   first_name: MyString
   last_name: MyString
-  desc: MyText
+  descr: MyText
 
 two:
   first_name: MyString
   last_name: MyString
-  desc: MyText
+  descr: MyText

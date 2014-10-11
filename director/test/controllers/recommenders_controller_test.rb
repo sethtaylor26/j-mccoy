@@ -21,7 +21,7 @@ class RecommendersControllerTest < ActionController::TestCase
   test "should create recommender" do
     sign_in users(:one)
     assert_difference('Recommender.count') do
-      post :create, recommender: { desc: @recommender.desc, first_name: @recommender.first_name, last_name: @recommender.last_name }
+      post :create, recommender: { descr: @recommender.descr, first_name: @recommender.first_name, last_name: @recommender.last_name }
     end
 
     assert_redirected_to recommender_path(assigns(:recommender))
@@ -41,7 +41,7 @@ class RecommendersControllerTest < ActionController::TestCase
 
   test "should update recommender" do
     sign_in users(:one)
-    patch :update, id: @recommender, recommender: { desc: @recommender.desc, first_name: @recommender.first_name, last_name: @recommender.last_name }
+    patch :update, id: @recommender, recommender: { desc: @recommender.descr, first_name: @recommender.first_name, last_name: @recommender.last_name }
     assert_redirected_to recommender_path(assigns(:recommender))
   end
 

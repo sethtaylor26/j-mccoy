@@ -3,9 +3,7 @@
 one:
   question: one
   answer: MyText
-  answer_weight: 1
 
 two:
   question: two
   answer: MyText
-  answer_weight: 4

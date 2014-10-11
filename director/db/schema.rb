@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009190304) do
+ActiveRecord::Schema.define(version: 20141011201504) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20141009190304) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "event_type_answer_weights", force: true do |t|
-    t.integer  "potential_answer_id"
-    t.integer  "event_type_id"
+    t.integer  "potential_answer_id", null: false
+    t.integer  "event_type_id",       null: false
     t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -43,26 +43,26 @@ ActiveRecord::Schema.define(version: 20141009190304) do
   add_index "event_type_answer_weights", ["potential_answer_id"], name: "index_event_type_answer_weights_on_potential_answer_id"
 
   create_table "event_types", force: true do |t|
-    t.string   "event_type_name"
+    t.string   "event_type_name", null: false
     t.integer  "parent"
-    t.string   "image"
+    t.string   "image",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
-    t.integer  "event_type_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string   "title"
+    t.integer  "event_type_id",  null: false
+    t.datetime "start_time",     null: false
+    t.datetime "end_time",       null: false
+    t.string   "title",          null: false
     t.string   "short_review"
     t.text     "long_review"
     t.string   "web_site_url"
-    t.float    "location_lat"
-    t.float    "location_long"
+    t.float    "location_lat",   null: false
+    t.float    "location_long",  null: false
     t.string   "address"
-    t.integer  "spice"
-    t.integer  "cost"
+    t.integer  "spice",          null: false
+    t.integer  "cost",           null: false
     t.integer  "recommender_id"
     t.string   "image_url"
     t.text     "comments"
@@ -74,9 +74,8 @@ ActiveRecord::Schema.define(version: 20141009190304) do
   add_index "events", ["recommender_id"], name: "index_events_on_recommender_id"
 
   create_table "potential_answers", force: true do |t|
-    t.integer  "question_id"
-    t.text     "answer"
-    t.integer  "answer_weight"
+    t.integer  "question_id", null: false
+    t.string   "answer",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,30 +83,30 @@ ActiveRecord::Schema.define(version: 20141009190304) do
   add_index "potential_answers", ["question_id"], name: "index_potential_answers_on_question_id"
 
   create_table "questions", force: true do |t|
-    t.text     "question"
-    t.string   "question_type"
+    t.text     "question",      null: false
+    t.string   "question_type", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "recommendation_types", force: true do |t|
-    t.string   "rec_type"
-    t.text     "descr"
+    t.string   "rec_type",   null: false
+    t.text     "descr",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "recommenders", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.text     "desc"
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.text     "descr",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "user_answers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "potential_answer_id"
+    t.integer  "user_id",             null: false
+    t.integer  "potential_answer_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

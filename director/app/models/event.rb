@@ -1,8 +1,15 @@
-class Event < ActiveRecord::Base
-  validates :event_type_id, presence: true
-    
+class Event < ActiveRecord::Base    
   belongs_to :event_type
   belongs_to :recommender
+  
+  validates :event_type_id, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :title, presence: true
+  validates :location_lat, presence: true
+  validates :location_long, presence: true
+  validates :spice, presence: true
+  validates :cost, presence: true
   
   scope :start_time, -> (start_time) { where("start_time >= ?", start_time) }
   scope :end_time, -> (end_time) { where("end_time <= ?", end_time) }

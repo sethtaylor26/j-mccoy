@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :user_answers
+  
+  validates :email, presence: true
 
   include TokenAuthenticatable
 

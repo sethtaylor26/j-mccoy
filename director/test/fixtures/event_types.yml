@@ -2,10 +2,10 @@
 
 one:
   event_type_name: MyString
-  Parent: 1
-  Image: MyString
+  parent: 1
+  image: MyString
 
 two:
   event_type_name: MyString
-  Parent: 1
-  Image: MyString
+  parent: 1
+  image: MyString

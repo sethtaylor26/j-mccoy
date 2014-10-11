@@ -2,6 +2,9 @@ class EventTypeAnswerWeight < ActiveRecord::Base
   belongs_to :potential_answer
   belongs_to :event_type
   
+  validates :event_type_id, presence: true
+  validates :potential_answer_id, presence: true
+    
     def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)

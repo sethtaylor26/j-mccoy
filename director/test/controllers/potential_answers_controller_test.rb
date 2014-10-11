@@ -21,7 +21,7 @@ class PotentialAnswersControllerTest < ActionController::TestCase
   test "should create potential_answer" do
     sign_in users(:one)
     assert_difference('PotentialAnswer.count') do
-      post :create, potential_answer: { answer: @potential_answer.answer, answer_weight: @potential_answer.answer_weight, question_id: @potential_answer.question_id }
+      post :create, potential_answer: { answer: @potential_answer.answer, question_id: @potential_answer.question_id }
     end
 
     assert_redirected_to potential_answer_path(assigns(:potential_answer))
@@ -41,7 +41,7 @@ class PotentialAnswersControllerTest < ActionController::TestCase
 
   test "should update potential_answer" do
     sign_in users(:one)
-    patch :update, id: @potential_answer, potential_answer: { answer: @potential_answer.answer, answer_weight: @potential_answer.answer_weight, question_id: @potential_answer.question_id }
+    patch :update, id: @potential_answer, potential_answer: { answer: @potential_answer.answer, question_id: @potential_answer.question_id }
     assert_redirected_to potential_answer_path(assigns(:potential_answer))
   end
 

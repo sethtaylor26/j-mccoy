@@ -69,6 +69,6 @@ class PotentialAnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def potential_answer_params
-      params.require(:potential_answer).permit(:questions_id, :answer, :answer_weight)
+      params.require(:potential_answer).permit(:question_id, :answer)
     end
 end
