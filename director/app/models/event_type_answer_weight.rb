@@ -5,7 +5,7 @@ class EventTypeAnswerWeight < ActiveRecord::Base
   validates :event_type_id, presence: true
   validates :potential_answer_id, presence: true
     
-    def self.import(file)
+  def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|

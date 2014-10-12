@@ -2,17 +2,17 @@
 
 one:
   event_type: one
-  start_time: 2014-09-28 17:19:53
-  end_time: 2014-09-28 17:19:53
-  title: MyString
+  start_time: 2013-09-28 17:00:00
+  end_time: 2013-09-28 23:00:00
+  title: This is the one
   short_review: MyString
   long_review: MyText
   web_site_url: MyString
   location_lat: 1.5
   location_long: 1.5
   address: MyString
-  spice: 1
-  cost: 1
+  spice: 5
+  cost: 5
   recommender: one
   image_url: MyString
   comments: MyText

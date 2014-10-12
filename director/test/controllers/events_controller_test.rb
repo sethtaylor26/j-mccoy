@@ -7,7 +7,15 @@ class EventsControllerTest < ActionController::TestCase
 
   test "should get index" do
     sign_in users(:one)
-    get :index
+    get :index, :format => :json
+    assert_response :success
+    assert_not_nil assigns(:events)
+  end
+  
+  #TODO: This doesn't work.  Need to figure out how to test the functional aspects of the scopes
+  test "get the right start date" do
+    sign_in users(:one)
+    get(:index, {'start_time' => "2017-09-28T18:00:00"})
     assert_response :success
     assert_not_nil assigns(:events)
   end
