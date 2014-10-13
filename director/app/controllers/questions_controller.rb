@@ -8,6 +8,11 @@ class QuestionsController < ApplicationController
     @questions = @questions.question_type(params[:question_type]) if params[:question_type].present?
   end
 
+  def import
+    Question.import(params[:file])
+    redirect_to questions_url, notice: "Questions imported."
+  end
+
   # GET /questions/1
   # GET /questions/1.json
   def show

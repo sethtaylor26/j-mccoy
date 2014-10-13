@@ -28,6 +28,15 @@
 
 <%= link_to 'New Question', new_question_path %>
 
+<h2>Import Questions</h2>
+
+<%= form_tag import_questions_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+
+<br>
+
 <ul class="nav pull-right">	
   <li><%= link_to "Home",         root_path %></li>
   <% if user_signed_in? %>

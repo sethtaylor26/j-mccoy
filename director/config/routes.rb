@@ -6,9 +6,13 @@ Rails.application.routes.draw do
     collection { post :import }
   end
 
-  resources :potential_answers
+  resources :potential_answers do
+    collection { post :import }
+  end
 
-  resources :questions
+  resources :questions do
+    collection { post :import }
+  end
 
   resources :recommendation_types
 
@@ -29,7 +33,7 @@ Rails.application.routes.draw do
   resources :event_types do
     collection { post :import }
   end
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

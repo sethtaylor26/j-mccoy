@@ -11,14 +11,6 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:events)
   end
-  
-  #TODO: This doesn't work.  Need to figure out how to test the functional aspects of the scopes
-  test "get the right start date" do
-    sign_in users(:one)
-    get(:index, {'start_time' => "2017-09-28T18:00:00"})
-    assert_response :success
-    assert_not_nil assigns(:events)
-  end
 
   test "should get new" do
     sign_in users(:one)
@@ -60,5 +52,11 @@ class EventsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to events_path
+  end
+  
+  protected
+  
+  def node(html)
+    HTML::Document.new(html).root
   end
 end

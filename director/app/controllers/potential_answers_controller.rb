@@ -7,6 +7,11 @@ class PotentialAnswersController < ApplicationController
     @potential_answers = PotentialAnswer.all
   end
 
+  def import
+    PotentialAnswer.import(params[:file])
+    redirect_to potential_answers_url, notice: "Potential Answers imported."
+  end
+
   # GET /potential_answers/1
   # GET /potential_answers/1.json
   def show
