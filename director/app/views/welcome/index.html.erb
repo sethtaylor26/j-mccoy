@@ -1,7 +1,7 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>J.McCoy Admin Console</h1>
 <% if current_user.try(:admin?) %>
 <p><a href="/events">Events</a></p>
+<p><a href="/open_hours">Open Hours</a></p>
 <p><a href="/event_types">Event Types</a></p>
 <p><a href="/recommenders">Recommenders</a></p>
 <p><a href="/recommendation_types">Recommendation Types</a></p>
@@ -10,6 +10,8 @@
 <p><a href="/event_type_answer_weights">event type answer weights</a></p>
 <p><a href="/user_answers">user answers</a></p>
 <% end %>
+
+<hr>
 
 <ul class="nav pull-right">	
   <li><%= link_to "Home",         root_path %></li>

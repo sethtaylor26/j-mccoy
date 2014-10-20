@@ -4,12 +4,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.where(nil) # creates an anonymous scope
-    @events = @events.title(params[:title]) if params[:title].present?
-    @events = @events.start_time(params[:start_time]) if params[:start_time].present?
-    @events = @events.end_time(params[:end_time]) if params[:end_time].present?
-    @events = @events.cost(params[:cost]) if params[:cost].present?
-	@events = @events.spice(params[:spice]) if params[:spice].present?
+    @events = QueryEvents.new.call(params)
   end
 
   def import

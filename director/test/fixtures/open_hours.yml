@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: three
+  day_of_the_week: Monday
+  open_hour: "08:00"
+  close_hour: "20:00"
+
+two:
+  event: three
+  day_of_the_week: Tuesday
+  open_hour: "08:00"
+  close_hour: "20:00"
+
+three:
+  event: three
+  day_of_the_week: Wednesday
+  open_hour: "08:00"
+  close_hour: "20:00"
+
+four:
+  event: three
+  day_of_the_week: Thursday
+  open_hour: "08:00"
+  close_hour: "20:00"
+
+five:
+  event: three
+  day_of_the_week: Friday
+  open_hour: "08:00"
+  close_hour: "15:30"
+
+six:
+  event: three
+  day_of_the_week: Saturday
+  open_hour: "10:00"
+  close_hour: "17:00"

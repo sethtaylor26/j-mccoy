@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>ID</th>
+      <th>Question</th>
       <th>Potential answer</th>
       <th>Event type</th>
       <th>Weight</th>
@@ -15,6 +16,7 @@
     <% @event_type_answer_weights.each do |event_type_answer_weight| %>
       <tr>
         <td><%= event_type_answer_weight.id %></td>	
+        <td><%= event_type_answer_weight.potential_answer.question.question %></td>
         <td><%= event_type_answer_weight.potential_answer.answer %></td>
         <td><%= event_type_answer_weight.event_type.event_type_name %></td>
         <td><%= event_type_answer_weight.weight %></td>
@@ -36,6 +38,8 @@
   <%= file_field_tag :file %>
   <%= submit_tag "Import" %>
 <% end %>
+
+<hr>
 
 <ul class="nav pull-right">	
   <li><%= link_to "Home",         root_path %></li>

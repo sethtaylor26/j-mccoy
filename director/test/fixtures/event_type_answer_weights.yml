@@ -6,6 +6,46 @@ one:
   weight: 1
 
 two:
-  potential_answer: two
+  potential_answer: one
   event_type: two
   weight: 4
+
+three:
+  potential_answer: one
+  event_type: three
+  weight: 3
+
+four:
+  potential_answer: one
+  event_type: four
+  weight: 4
+
+five:
+  potential_answer: one
+  event_type: five
+  weight: 3
+
+six:
+  potential_answer: two
+  event_type: one
+  weight: 1
+
+seven:
+  potential_answer: two
+  event_type: two
+  weight: 3
+
+eight:
+  potential_answer: two
+  event_type: three
+  weight: 5
+
+nine:
+  potential_answer: two
+  event_type: four
+  weight: 1
+
+ten:
+  potential_answer: two
+  event_type: five
+  weight: 3

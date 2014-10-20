@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011201504) do
+ActiveRecord::Schema.define(version: 20141020175315) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -68,10 +68,22 @@ ActiveRecord::Schema.define(version: 20141011201504) do
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "general_hours"
   end
 
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id"
   add_index "events", ["recommender_id"], name: "index_events_on_recommender_id"
+
+  create_table "open_hours", force: true do |t|
+    t.integer  "event_id",                  null: false
+    t.string   "day_of_the_week",           null: false
+    t.string   "open_hour",       limit: 5, null: false
+    t.string   "close_hour",      limit: 5, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "open_hours", ["event_id"], name: "index_open_hours_on_event_id"
 
   create_table "potential_answers", force: true do |t|
     t.integer  "question_id", null: false

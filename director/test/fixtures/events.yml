@@ -3,8 +3,8 @@
 one:
   event_type: one
   start_time: 2013-09-28 17:00:00
-  end_time: 2013-09-28 23:00:00
-  title: This is the one
+  end_time: 2013-09-28 15:00:00
+  title: This is one
   short_review: MyString
   long_review: MyText
   web_site_url: MyString
@@ -16,12 +16,13 @@ one:
   recommender: one
   image_url: MyString
   comments: MyText
+  general_hours:
 
 two:
   event_type: two
   start_time: 2014-09-28 17:19:53
-  end_time: 2014-09-28 17:19:53
-  title: MyString
+  end_time: 2014-09-28 17:00:53
+  title: This is two
   short_review: MyString
   long_review: MyText
   web_site_url: MyString
@@ -33,3 +34,22 @@ two:
   recommender: two
   image_url: MyString
   comments: MyText
+  general_hours:
+
+three:
+  event_type: three
+  start_time: 2013-09-27 17:19:53
+  end_time: 2015-09-27 23:19:53
+  title: This is three
+  short_review: MyString
+  long_review: MyText
+  web_site_url: MyString
+  location_lat: 1.5
+  location_long: 1.5
+  address: MyString
+  spice: 5
+  cost: 5
+  recommender: two
+  image_url: MyString
+  comments: MyText
+  general_hours: true

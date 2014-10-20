@@ -1,26 +1,21 @@
-class Event < ActiveRecord::Base    
-  belongs_to :event_type
-  belongs_to :recommender
-  
-  has_many :open_hours
-  
-  validates :event_type_id, presence: true
-  validates :start_time, presence: true
-  validates :end_time, presence: true
-  validates :title, presence: true
-  validates :location_lat, presence: true
-  validates :location_long, presence: true
-  validates :spice, presence: true
-  validates :cost, presence: true
-  
+class OpenHour < ActiveRecord::Base
+  belongs_to :event
+
+  DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  validates_inclusion_of :day_of_the_week, :in => DAYS
+  validate :day_of_the_week, presence: true
+  validate :event_id, presence: true
+  validate :open_hour, presence: true
+  validate :close_hour, presence: true
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      event = find_by_id(row["id"]) || new
-      event.attributes = row.to_hash.slice(*Event.attribute_names())
-      event.save!
+      open_hour = find_by_id(row["id"]) || new
+      open_hour.attributes = row.to_hash.slice(*OpenHour.attribute_names())
+      open_hour.save!
     end
   end
 
@@ -32,4 +27,5 @@ class Event < ActiveRecord::Base
       else raise "Unknown file type: #{file.original_filename}"
     end
   end
+
 end

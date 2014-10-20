@@ -75,8 +75,15 @@
   <%= @event.comments %>
 </p>
 
+<p>
+  <strong>General Hours?:</strong>
+  <%= @event.general_hours %>
+</p>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+
+<hr>
 
 <ul class="nav pull-right">	
   <li><%= link_to "Home",         root_path %></li>

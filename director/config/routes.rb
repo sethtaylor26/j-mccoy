@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :open_hours do
+    collection { post :import }
+  end
+
   resources :user_answers
 
   resources :event_type_answer_weights do

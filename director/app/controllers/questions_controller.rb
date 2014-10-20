@@ -4,8 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.where(nil) # creates an anonymous scope
-    @questions = @questions.question_type(params[:question_type]) if params[:question_type].present?
+    @questions = QueryQuestions.new.call(params)
   end
 
   def import

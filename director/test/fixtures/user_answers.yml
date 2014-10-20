@@ -5,5 +5,13 @@ one:
   potential_answer: one
 
 two:
+  user: one
+  potential_answer: two
+
+three:
+  user: two
+  potential_answer: one
+
+four:
   user: two
   potential_answer: two 
