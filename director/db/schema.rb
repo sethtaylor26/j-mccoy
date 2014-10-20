@@ -13,24 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20141020175315) do
 
-  create_table "admins", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-  add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-
   create_table "event_type_answer_weights", force: true do |t|
     t.integer  "potential_answer_id", null: false
     t.integer  "event_type_id",       null: false
@@ -87,7 +69,7 @@ ActiveRecord::Schema.define(version: 20141020175315) do
 
   create_table "potential_answers", force: true do |t|
     t.integer  "question_id", null: false
-    t.string   "answer",      null: false
+    t.text     "answer",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
