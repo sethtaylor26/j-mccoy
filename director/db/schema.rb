@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020175315) do
+ActiveRecord::Schema.define(version: 20141024212556) do
+
+  create_table "duders", force: true do |t|
+    t.boolean  "pants"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "event_type_answer_weights", force: true do |t|
     t.integer  "potential_answer_id", null: false
