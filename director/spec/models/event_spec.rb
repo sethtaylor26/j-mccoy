@@ -51,8 +51,7 @@ RSpec.describe Event, :type => :model do
     another_event = FactoryGirl.create(:event, start_time: another_date)
 
     rslt2 = Event.where(start_time: another_date)
-
-    debugger
+    expect((rslt1 + rslt2).length).to eq(2)
   end
 
   def day(event_id, dow, args = {})
