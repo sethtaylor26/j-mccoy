@@ -53,4 +53,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'awesome_print', require: true
 end
