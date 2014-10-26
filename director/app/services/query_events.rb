@@ -10,42 +10,44 @@ class QueryEvents
     filter_cost
     filter_spice
     find_top_events_by_weight
-    @events
-
+    @events + @events_hrs
   end
 
   def initialize_query
-  	@events = Event.where(nil)
-    @events_hrs = Event.where("events.general_hours = ?", true)
+  	@events     = Event.where(general_hours: false)
+    @events_hrs = Event.where(general_hours: true)
   end
 
   def filter_start_time
   	return unless @params[:start_time].present?
 
+    # static
     start_time = DateTime.parse(@params[:start_time])
+  	@events.where("start_time >= ?", start_time)
 
-  	@events = @events.where("start_time >= ?", start_time)
-
+    # general
     day = start_time.strftime('%A')
     time = start_time.to_s(:time)
-    @events_hrs = @events_hrs.joins("LEFT OUTER JOIN open_hours on open_hours.event_id = events.id").where("open_hours.day_of_the_week = ? and open_hours.open_hour <= ?", day, time)
-
-    @events = @events + @events_hrs
-
+    @events_hrs = @events_hrs
+      .joins(:open_hours)
+      .where(open_hours: {day_of_the_week: day})
+      .where('open_hours.open_hour <= ?', time)
   end
 
+
   def filter_end_time
-    return unless @params[:end_time].present? 
+    return unless @params[:end_time].present?
 
     end_time = DateTime.parse(@params[:end_time])
-
     @events = @events.where("end_time <= ?", end_time)
-    
+
     day = end_time.strftime('%A')
     time = end_time.to_s(:time)
-    @events_hrs = @events_hrs.joins("LEFT OUTER JOIN open_hours on open_hours.event_id = events.id").where("open_hours.day_of_the_week = ? and open_hours.close_hour >= ?", day, time)
 
-    @events = @events + @events_hrs
+    @events_hrs = @events_hrs
+      .joins(:open_hours)
+      .where(open_hours: {day_of_the_week: day})
+      .where('open_hours.close_hour >= ?', time)
   end
 
   def filter_general_hours

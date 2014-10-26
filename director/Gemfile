@@ -46,6 +46,7 @@ gem 'roo',  '~> 1.10.1'
 gem 'rubyzip', '~> 0.9.9'
 
 gem 'byebug'
+gem 'chronic'
 
 group :development, :test do
   gem 'spring-commands-rspec'
