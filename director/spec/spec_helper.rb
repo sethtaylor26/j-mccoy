@@ -22,6 +22,8 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+  
+  config.include Devise::TestHelpers, :type => :controller
 
   #config.formatter = :documentation
 end

@@ -4,18 +4,72 @@ class QueryEvents
 
     @params = params
 
-    initialize_query
-    filter_start_time
-    filter_end_time
-    filter_cost
-    filter_spice
-    find_top_events_by_weight
-    @events + @events_hrs
+    #rlst = validate
+    #return rslt unless rslt.success
+
+    #initialize_query
+    debugger
+    filter
+    #filter_start_time
+    #filter_end_time
+    #filter_cost
+    #filter_spice
+    #find_top_events_by_weight
+    result(true, nil, @events + @events_hrs)
   end
 
-  def initialize_query
-  	@events     = Event.where(general_hours: false)
+  #def initialize_query
+  #	@events     = Event.where(general_hours: false)
+  #  @events_hrs = Event.where(general_hours: true)
+  #end
+
+  #def validate
+  #  [:start_time, :end_time].each do |param|
+  #    if @params[param].nil?
+  #      return result(
+  #          false,
+  #          {params: ['start_time must be present', 'end time must be present']}
+  #      )
+  #    end
+  #  end
+  #end
+
+  def result(success, error, obj)
+    Struct.new(:success, :error, :obj).new(success, error, obj)
+  end
+
+  def filter
+
+    @events     = Event.where(general_hours: false)
     @events_hrs = Event.where(general_hours: true)
+
+    # static
+    start_time = DateTime.parse(@params[:start_time])
+    end_time = DateTime.parse(@params[:end_time])
+
+    @events = @events
+      .where("start_time >= ?", start_time)
+      .where("end_time <= ?", end_time)
+      .where("cost <= ?", @params[:cost])
+      .where("spice <= ?", @params[:spice])
+
+    # general
+    day = start_time.strftime('%A')
+    time = start_time.to_s(:time)
+    @events_hrs = @events_hrs
+      .joins(:open_hours)
+      .where(open_hours: {day_of_the_week: day})
+      .where('open_hours.open_hour <= ?', time)
+      .where("cost <= ?", @params[:cost])
+      .where("spice <= ?", @params[:spice])
+
+  end
+
+  def static_hours(obj)
+    obj
+      .where("start_time >= ?", start_time)
+      .where("end_time <= ?", end_time)
+      .where("cost <= ?", @params[:cost])
   end
 
   def filter_start_time
@@ -23,7 +77,9 @@ class QueryEvents
 
     # static
     start_time = DateTime.parse(@params[:start_time])
-  	@events.where("start_time >= ?", start_time)
+  	@events
+      .where("start_time >= ?", start_time)
+      .where("end_time <= ?", end_time)
 
     # general
     day = start_time.strftime('%A')

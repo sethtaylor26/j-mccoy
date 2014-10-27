@@ -1,22 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Event, :type => :model do
-  it 'shows how to use rspec and factory girl' do
-    # building event without saving
-    event = FactoryGirl.build(:event)
-    expect(event.persisted?).to eq(false)
-    event.save!
-    expect(event.persisted?).to eq(true)
 
-    # building events with saving
-    event = FactoryGirl.create(:event)
-    expect(event.persisted?).to eq(true)
+  it 'checks event_type_ids' do
+
+    event = Event.new
+    event.save
+
+    expect(event.errors.messages[:event_type_id]).to_not be nil
+
+    expect(event.persisted?).to eq(false)
+
   end
 
   it 'relationships' do
     event = FactoryGirl.create(:event)
-    open_hour = FactoryGirl.create(:open_hour)
+    open_hour = FactoryGirl.create(:open_hour, event_id: event.id)
     expect(event.open_hours.count).to eq(1)
+    expect(OpenHour.last.event_id).to eq(event.id)
   end
 
   it 'day works' do
@@ -24,6 +25,7 @@ RSpec.describe Event, :type => :model do
   end
 
   it 'general hours' do
+    pending 'figure this out'
     date = DateTime.parse('2014-02-04T08:05:06+07:00')
 
     event = FactoryGirl.create(:event, start_time: date)
@@ -36,8 +38,8 @@ RSpec.describe Event, :type => :model do
 
     dow = date.strftime('%A')
     expect(dow).to eq('Tuesday')
-    hour = date.strftime('%H%I')
-    expect(hour).to eq('0808')
+    hour = date.to_s(:time)
+    expect(hour).to eq('08:05')
 
     rslt1 = Event
       .where("start_time < ?", date + 1.hour)
