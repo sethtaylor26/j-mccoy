@@ -33,13 +33,12 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-debugger
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
-        debugger
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end

@@ -121,7 +121,7 @@ RSpec.describe QueryEvents do
 
     it 'is outside open hours' do
       service = QueryEvents.new
-      debugger
+      
       time_start = Chronic.parse('this saturday 8:00AM')
       time_end   = Chronic.parse('this saturday 12:00PM')
       event      = FactoryGirl.create(:event, start_time: time_start.strftime('%Y-%m-%d %H:%M:%S'), end_time: time_end.strftime('%Y-%m-%d %H:%M:%S'), general_hours: true)
