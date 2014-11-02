@@ -40,7 +40,11 @@
         <td><%= event.address %></td>
         <td><%= event.spice %></td>
         <td><%= event.cost %></td>
+        <% if event.recommender != nil %>
         <td><%= event.recommender.first_name %> <%= event.recommender.last_name %></td>
+        <% else %>
+        <td></td>
+        <% end %>
         <td><%= event.image_url %></td>
         <td><%= event.comments %></td>
         <td><%= event.general_hours %></td>

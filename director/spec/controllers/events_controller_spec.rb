@@ -3,6 +3,7 @@ require 'spec_helper'
 
 RSpec.describe EventsController, :type => :controller do
   before :each do
+    pending 'figure this out'
     @user = FactoryGirl.create(:user)
     #@merchant = Factory(:merchant, :user_id => @user.id,:is_approved => false, :is_blacklisted => false)
     #controller.stub!(:current_user).and_return(@user)
