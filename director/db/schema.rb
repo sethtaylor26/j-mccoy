@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030132635) do
+ActiveRecord::Schema.define(version: 20141107193123) do
 
   create_table "event_type_answer_weights", force: true do |t|
     t.integer  "potential_answer_id", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141030132635) do
     t.integer  "spice",                          null: false
     t.integer  "cost",                           null: false
     t.integer  "recommender_id"
-    t.string   "image_url"
+    t.string   "image"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"

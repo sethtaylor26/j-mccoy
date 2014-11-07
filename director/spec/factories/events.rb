@@ -13,7 +13,7 @@ FactoryGirl.define do
     spice 4
     cost 2
     recommender_id 1
-    image_url 'http//codepen.io/image.png'
+    image 'http//codepen.io/image.png'
     comments 'this is fun'
     general_hours false
   end

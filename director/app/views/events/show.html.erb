@@ -66,8 +66,8 @@
 </p>
 
 <p>
-  <strong>Image url:</strong>
-  <%= @event.image_url %>
+  <strong>Image:</strong>
+  <%= image_tag @event.image_url(:thumb) if @event.image? %>
 </p>
 
 <p>

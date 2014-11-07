@@ -2,6 +2,9 @@ class EventType < ActiveRecord::Base
   has_many :events
   has_many :event_type_answer_weights
   validates :event_type_name, presence: true
+  validates :image, presence: true
+
+  mount_uploader :image, ImageUploader
   
   def self.import(file)
   spreadsheet = open_spreadsheet(file)

@@ -41,6 +41,10 @@ gem 'spring',        group: :development
 # Auth
 gem 'devise'
 
+# image management
+gem "rmagick", :require => 'RMagick'
+gem 'carrierwave'
+
 # importing csvs
 gem 'roo',  '~> 1.10.1'
 gem 'rubyzip', '~> 0.9.9'

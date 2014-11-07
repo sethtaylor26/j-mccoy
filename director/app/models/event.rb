@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
   validates :location_long, presence: true
   validates :spice, presence: true
   validates :cost, presence: true
+
+  mount_uploader :image, ImageUploader
   
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
