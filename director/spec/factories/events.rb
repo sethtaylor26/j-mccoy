@@ -13,7 +13,7 @@ FactoryGirl.define do
     spice 4
     cost 2
     recommender_id 1
-    image 'http//codepen.io/image.png'
+    image Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/factories/images/myfile.jpg')))
     comments 'this is fun'
     general_hours false
   end
