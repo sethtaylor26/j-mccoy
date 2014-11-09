@@ -6,11 +6,11 @@ class EventType < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
   
+  # This is not enabled in the UI until a solution for importing images throw CarrierWave is found
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
-      debugger
       row = Hash[[header, spreadsheet.row(i)].transpose]
       event_type = find_by_id(row["id"]) || new
       event_type.attributes = row.to_hash.slice(*EventType.attribute_names())
