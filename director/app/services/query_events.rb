@@ -8,7 +8,7 @@ class QueryEvents
     unless rslt.success
       return rslt
     end
-
+    
     initialize_query
     filter
 
