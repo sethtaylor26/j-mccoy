@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question: This is one
+  question_type: YN
+
+two:
+  question: This is two
+  question_type: EO

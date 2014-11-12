@@ -1,0 +1,48 @@
+<h1>Listing event_types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Event Type Name</th>
+      <th>Parent</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_types.each do |event_type| %>
+      <tr valign="top">
+        <td><%= event_type.id %></td>
+        <td><%= event_type.event_type_name %></td>
+        <td><%= event_type.parent %></td>
+        <!--td><%= image_tag(event_type.image, size: "150x200") %></td-->
+        <td><%= event_type.image %></td>
+        <td><%= link_to 'Show', event_type %></td>
+        <td><%= link_to 'Edit', edit_event_type_path(event_type) %></td>
+        <td><%= link_to 'Destroy', event_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event type', new_event_type_path %>
+
+<h2>Import Event Types</h2>
+
+Importing Event Types has been removed pending a solution to importing images
+
+<hr>
+
+<ul class="nav pull-right">	
+  <li><%= link_to "Home",         root_path %></li>
+  <% if user_signed_in? %>
+  <li><%= link_to "Profile", edit_user_registration_path %></li>
+  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+  <% else %>
+  <li><%= link_to "Sign in", new_user_session_path %></li>
+  <% end %>
+</ul>

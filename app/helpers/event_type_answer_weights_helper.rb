@@ -1,0 +1,2 @@
+module EventTypeAnswerWeightsHelper
+end

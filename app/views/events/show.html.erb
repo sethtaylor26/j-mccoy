@@ -1,0 +1,96 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= @event.event_type %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @event.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @event.end_time %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<p>
+  <strong>Short review:</strong>
+  <%= @event.short_review %>
+</p>
+
+<p>
+  <strong>Long review:</strong>
+  <%= @event.long_review %>
+</p>
+
+<p>
+  <strong>Web site url:</strong>
+  <%= @event.web_site_url %>
+</p>
+
+<p>
+  <strong>Location lat:</strong>
+  <%= @event.location_lat %>
+</p>
+
+<p>
+  <strong>Location long:</strong>
+  <%= @event.location_long %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @event.address %>
+</p>
+
+<p>
+  <strong>Spice:</strong>
+  <%= @event.spice %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= @event.cost %>
+</p>
+
+<p>
+  <strong>Recommender:</strong>
+  <%= @event.recommender %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @event.image_url(:thumb) if @event.image? %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @event.comments %>
+</p>
+
+<p>
+  <strong>General Hours?:</strong>
+  <%= @event.general_hours %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+
+<hr>
+
+<ul class="nav pull-right">	
+  <li><%= link_to "Home",         root_path %></li>
+  <% if user_signed_in? %>
+  <li><%= link_to "Profile", edit_user_registration_path %></li>
+  <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+  <% else %>
+  <li><%= link_to "Sign in", new_user_session_path %></li>
+  <% end %>
+</ul>

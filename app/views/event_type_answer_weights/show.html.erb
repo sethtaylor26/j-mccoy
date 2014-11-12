@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Potential answer:</strong>
+  <%= @event_type_answer_weight.potential_answer.answer %>
+</p>
+
+<p>
+  <strong>Event type:</strong>
+  <%= @event_type_answer_weight.event_type.event_type_name %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @event_type_answer_weight.weight %>
+</p>
+
+<%= link_to 'Edit', edit_event_type_answer_weight_path(@event_type_answer_weight) %> |
+<%= link_to 'Back', event_type_answer_weights_path %>

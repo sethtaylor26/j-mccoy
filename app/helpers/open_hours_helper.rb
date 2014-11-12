@@ -1,0 +1,2 @@
+module OpenHoursHelper
+end
