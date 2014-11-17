@@ -1,6 +1,7 @@
 class EventTypeAnswerWeight < ActiveRecord::Base
   belongs_to :potential_answer
   belongs_to :event_type
+  has_many :user_answers, through: :potential_answer
   
   validates :event_type_id, presence: true
   validates :potential_answer_id, presence: true

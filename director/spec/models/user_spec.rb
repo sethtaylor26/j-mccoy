@@ -13,7 +13,6 @@ RSpec.describe User, :type => :model do
   end
 
   it 'checks relationships' do
-    pending 'figure this out'
     #test has_many relationships
     user = FactoryGirl.create(:user)
     user_answer = FactoryGirl.create(:user_answer, user_id: user.id)

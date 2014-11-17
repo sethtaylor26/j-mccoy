@@ -10,9 +10,13 @@ class QueryEvents
     end
     
     initialize_query
-    filter
+    logistics_filter
 
-    result(true, nil, @events + @events_hrs)
+    @initial_list = @events + @events_hrs
+
+    filter_top_events_by_weight
+
+    result(true, nil, @list_prefs)
   end
 
   def initialize_query
@@ -20,7 +24,7 @@ class QueryEvents
     @events_hrs = Event.where(general_hours: true)
   end
 
-  def filter
+  def logistics_filter
     return unless @params[:start_time].present? and
       @params[:end_time].present?
 
@@ -92,12 +96,33 @@ class QueryEvents
     end
   end
 
-  def find_top_events_by_weight
-  	return unless @params[:top_events]
-    #@event_type_answer_weights = EventTypeAnswerWeight.where(nil)
-    #@user_answers = UserAnswer.joins(potential_answer: :event_type_answer_weights)
+  def filter_top_events_by_weight
+    #select sum(etaw.weight), etaw.event_type_id from event_type_answer_weights etaw 
+    # INNER JOIN user_answers ua ON ua.potential_answer_id = etaw.potential_answer_id 
+    # group by etaw.event_type_id 
+    # order by sum(etaw.weight) sac;
+
+    @etaw = EventTypeAnswerWeight
+      .select("event_type_answer_weights.event_type_id, sum(event_type_answer_weights.weight) as total")
+      .joins(:user_answers)
+      .group("event_type_answer_weights.event_type_id")
+      .order('total DESC')
+
+    @list_prefs ||= []
     
-    #@event_type_answer_weights = EventTypeAnswerWeight.joins(:user_answers)
-    #@event_type_weights = EventTypeAnswerWeight.joins("INNER JOIN user_answers ON user_answers.potential_answer_id = event_type_answer_weights.potential_answer_id").group("event_type_id")
+    @etaw.each do |i|
+      @initial_list.each do |l|
+        if l.event_type_id == i.event_type_id
+          @list_prefs << l
+        end
+        if @list_prefs.length >= 3
+          break
+        end
+      end
+      if @list_prefs.length >= 3
+        break
+      end
+    end
+
   end
 end

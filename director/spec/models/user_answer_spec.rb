@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UserAnswer, :type => :model do
 
-  it 'checks presense' do
+  it 'checks presence' do
 
     user_answer = UserAnswer.new
     user_answer.save
