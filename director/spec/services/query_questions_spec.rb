@@ -2,11 +2,11 @@ RSpec.describe QueryEvents do
   describe 'filter' do
   	it 'test YN' do
       service = QueryQuestions.new
-      question_type_str = 'YN'
 
-      question = FactoryGirl.create(:question, question_type: question_type_str)
+      question = FactoryGirl.create(:question, question_type: 'YN')
+      question = FactoryGirl.create(:question, question_type: 'EO')
 
-      rslt = service.call({question_type: question_type_str})
+      rslt = service.call({question_type: 'YN'})
       expect(rslt.obj.length).to eq(1)
     end
 
