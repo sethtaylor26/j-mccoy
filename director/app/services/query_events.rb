@@ -97,16 +97,17 @@ class QueryEvents
   end
 
   def filter_top_events_by_weight
-    #select sum(etaw.weight), etaw.event_type_id from event_type_answer_weights etaw 
-    # INNER JOIN user_answers ua ON ua.potential_answer_id = etaw.potential_answer_id 
-    # group by etaw.event_type_id 
-    # order by sum(etaw.weight) sac;
 
     @etaw = EventTypeAnswerWeight
       .select("event_type_answer_weights.event_type_id, sum(event_type_answer_weights.weight) as total")
       .joins(:user_answers)
       .group("event_type_answer_weights.event_type_id")
       .order('total DESC')
+
+    count = 3
+    if @params[:count].present?
+      count = @params[:count].to_i
+    end
 
     @list_prefs ||= []
     
@@ -115,11 +116,11 @@ class QueryEvents
         if l.event_type_id == i.event_type_id
           @list_prefs << l
         end
-        if @list_prefs.length >= 3
+        if @list_prefs.length >= count
           break
         end
       end
-      if @list_prefs.length >= 3
+      if @list_prefs.length >= count
         break
       end
     end

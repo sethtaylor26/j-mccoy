@@ -4,7 +4,10 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = QueryQuestions.new.call(params)
+    rslt = QueryQuestions.new.call(params)
+    if rslt.success
+      @questions = rslt.obj
+    end
   end
 
   def import

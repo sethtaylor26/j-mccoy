@@ -23,7 +23,7 @@ RSpec.describe QueryEvents do
       start_time_search = (DateTime.now-12.hours).strftime('%Y-%m-%d %H:%M:%S %z')
       end_time_search = (DateTime.now+24.hours).strftime('%Y-%m-%d %H:%M:%S %z')
 
-      rslt = service.call({start_time: start_time_search, end_time: end_time_search, spice: 4, cost: 3})
+      rslt = service.call({start_time: start_time_search, end_time: end_time_search, spice: 4, cost: 3, count: 3})
 
       expect(rslt.obj.length).to eq(3)
       expect(rslt.obj[0].id).to eq(1)
@@ -109,7 +109,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start - 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
       end_time_str   = (time_end + 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3})
 
 
       expect(rslt.obj.length).to eq(1)
@@ -150,7 +150,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start + 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
       end_time_str   = (time_end - 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3})
 
       expect(rslt.obj.length).to eq(1)
     end
@@ -196,7 +196,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start - 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
       end_time_str   = (time_end + 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3})
 
       expect(rslt.obj.length).to eq(2)
       expect(rslt.obj[0].general_hours).to eq(false)

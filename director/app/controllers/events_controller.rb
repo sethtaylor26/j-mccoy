@@ -4,6 +4,10 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    if request.format.html?
+      @events = Event.all
+      return
+    end
     rslt = QueryEvents.new.call(params)
     if rslt.success
       @events = rslt.obj

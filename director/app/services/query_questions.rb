@@ -2,7 +2,7 @@ class QueryQuestions
 
   def call(params)
 
-	@params = params
+	  @params = params
 
   	initialize_query
   	filter_question_type
