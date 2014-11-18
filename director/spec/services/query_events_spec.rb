@@ -23,7 +23,7 @@ RSpec.describe QueryEvents do
       start_time_search = (DateTime.now-12.hours).strftime('%Y-%m-%d %H:%M:%S %z')
       end_time_search = (DateTime.now+24.hours).strftime('%Y-%m-%d %H:%M:%S %z')
 
-      rslt = service.call({start_time: start_time_search, end_time: end_time_search, spice: 4, cost: 3, count: 3})
+      rslt = service.call({start_time: start_time_search, end_time: end_time_search, spice: 4, cost: 3, count: 3}, @user)
 
       expect(rslt.obj.length).to eq(3)
       expect(rslt.obj[0].id).to eq(1)
@@ -37,6 +37,8 @@ RSpec.describe QueryEvents do
     it 'is missing all params' do
       service = QueryEvents.new
 
+      setup
+
       time_start = Chronic.parse('this sunday 8:00AM')
       time_end   = Chronic.parse('this sunday 12:00PM')
 
@@ -45,7 +47,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start + 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
       end_time_str   = (time_end - 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
 
-      rslt = service.call({})
+      rslt = service.call({}, @user)
       
       expect(rslt.success).to eq(false)
       expect(rslt.errors.length).to eq(4)
@@ -58,6 +60,9 @@ RSpec.describe QueryEvents do
 
     it 'is missing all but start_time' do
       service = QueryEvents.new
+
+      setup
+
       time_start = Chronic.parse('this sunday 8:00AM')
       time_end   = Chronic.parse('this sunday 12:00PM')
 
@@ -66,7 +71,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start + 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
       end_time_str   = (time_end - 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
 
-      rslt = service.call({start_time: start_time_str})
+      rslt = service.call({start_time: start_time_str}, @user)
 
       expect(rslt.success).to eq(false)
       expect(rslt.errors.length).to eq(3)
@@ -77,6 +82,9 @@ RSpec.describe QueryEvents do
 
     it 'is missing start_time' do
       service = QueryEvents.new
+
+      setup
+
       time_start = Chronic.parse('this sunday 8:00AM')
       time_end   = Chronic.parse('this sunday 12:00PM')
 
@@ -85,7 +93,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start + 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
       end_time_str   = (time_end - 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
 
-      rslt = service.call({end_time: end_time_str, spice: 4, cost: 3})
+      rslt = service.call({end_time: end_time_str, spice: 4, cost: 3}, @user)
 
       expect(rslt.errors.length).to eq(1)
       expect(rslt.errors[0]).to eq('start_time must be provided')
@@ -109,7 +117,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start - 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
       end_time_str   = (time_end + 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3}, @user)
 
 
       expect(rslt.obj.length).to eq(1)
@@ -118,6 +126,8 @@ RSpec.describe QueryEvents do
 
     it 'is outside acute hours' do
       service = QueryEvents.new
+
+      setup
       
       time_start = Chronic.parse('this sunday 8:00AM')
       time_end   = Chronic.parse('this sunday 12:00PM')
@@ -126,7 +136,7 @@ RSpec.describe QueryEvents do
       start_time_str = Chronic.parse('this saturday 11:00AM').strftime('%Y-%m-%dT%l:%M:%S%z')
       end_time_str   = Chronic.parse('this saturday 2:00PM').strftime('%Y-%m-%dT%l:%M:%S%z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3}, @user)
 
       expect(rslt.obj.length).to eq(0)
     end
@@ -150,7 +160,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start + 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
       end_time_str   = (time_end - 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3}, @user)
 
       expect(rslt.obj.length).to eq(1)
     end
@@ -158,6 +168,8 @@ RSpec.describe QueryEvents do
     it 'is outside open hours' do
       service = QueryEvents.new
       
+      setup
+
       time_start = Chronic.parse('this saturday 8:00AM')
       time_end   = Chronic.parse('this saturday 12:00PM')
       event      = FactoryGirl.create(:event, start_time: time_start.strftime('%Y-%m-%d %H:%M:%S'), end_time: time_end.strftime('%Y-%m-%d %H:%M:%S'), general_hours: true)
@@ -170,7 +182,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start + 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
       end_time_str   = (time_end - 1.hour).strftime('%Y-%m-%dT%l:%M:%S%z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3}, @user)
 
       expect(rslt.obj.length).to eq(0)
     end
@@ -196,7 +208,7 @@ RSpec.describe QueryEvents do
       start_time_str = (time_start - 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
       end_time_str   = (time_end + 1.hour).strftime('%Y-%m-%d %H:%M:%S %z')
 
-      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3})
+      rslt = service.call({start_time: start_time_str, end_time: end_time_str, spice: 4, cost: 3, count: 3}, @user)
 
       expect(rslt.obj.length).to eq(2)
       expect(rslt.obj[0].general_hours).to eq(false)
@@ -293,6 +305,7 @@ RSpec.describe QueryEvents do
       @ua2 = FactoryGirl.create(:user_answer, user_id: @user.id, potential_answer_id: @q2a1.id)
       @ua3 = FactoryGirl.create(:user_answer, user_id: @user.id, potential_answer_id: @q3a1.id)
       @ua4 = FactoryGirl.create(:user_answer, user_id: @user.id, potential_answer_id: @q4a2.id)
+
   end
 
 end

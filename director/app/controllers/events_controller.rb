@@ -4,11 +4,13 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    
+    user = User.find(current_user)
     if request.format.html?
       @events = Event.all
       return
     end
-    rslt = QueryEvents.new.call(params)
+    rslt = QueryEvents.new.call(params, user)
     if rslt.success
       @events = rslt.obj
     end

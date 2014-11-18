@@ -1,7 +1,7 @@
 class QueryEvents
 
-  def call(params)
-
+  def call(params, user)
+    @user = user
     @params = params
 
     rslt = validate
@@ -99,9 +99,10 @@ class QueryEvents
   def filter_top_events_by_weight
 
     @etaw = EventTypeAnswerWeight
-      .select("event_type_answer_weights.event_type_id, sum(event_type_answer_weights.weight) as total")
+      .select('event_type_answer_weights.event_type_id, sum(event_type_answer_weights.weight) as total')
       .joins(:user_answers)
-      .group("event_type_answer_weights.event_type_id")
+      .where('user_answers.user_id = ?', @user.id)
+      .group('event_type_answer_weights.event_type_id')
       .order('total DESC')
 
     count = 3
