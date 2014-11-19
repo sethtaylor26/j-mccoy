@@ -25,7 +25,7 @@ class QueryEvents
   end
 
   def logistics_filter
-    return unless @params[:start_time].present? and
+    return unless @params[:start_time].present? &&
       @params[:end_time].present?
 
     # static
@@ -65,11 +65,11 @@ class QueryEvents
     errors = []
     
     #"controller"=>"events", "action"=>"index"
-    if @params[:controller] == 'events' and
-       @params[:action] == 'index' and
-       @params[:start_time].nil? and
-       @params[:end_time].nil? and
-       @params[:cost].nil? and
+    if @params[:controller] == 'events' &&
+       @params[:action] == 'index' &&
+       @params[:start_time].nil? &&
+       @params[:end_time].nil? &&
+       @params[:cost].nil? &&
        @params[:spice].nil?
       return result(true)
     end
@@ -117,13 +117,9 @@ class QueryEvents
         if l.event_type_id == i.event_type_id
           @list_prefs << l
         end
-        if @list_prefs.length >= count
-          break
-        end
+        break if @list_prefs.length >= count
       end
-      if @list_prefs.length >= count
-        break
-      end
+      break if @list_prefs.length >= count
     end
 
   end

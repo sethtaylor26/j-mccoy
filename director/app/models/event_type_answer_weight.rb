@@ -25,5 +25,9 @@ class EventTypeAnswerWeight < ActiveRecord::Base
       else raise "Unknown file type: #{file.original_filename}"
     end
   end
+
+  def display_name
+    potential_answer.question.question + " - " + event_type.event_type_name + " - " + weight.to_s
+  end
   
 end

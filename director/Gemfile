@@ -52,6 +52,9 @@ gem 'rubyzip', '~> 0.9.9'
 gem 'byebug'
 gem 'chronic'
 
+#admin page generation
+gem 'activeadmin', github: 'activeadmin'
+
 group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails'

@@ -217,7 +217,7 @@ RSpec.describe QueryEvents do
   end
 
   def setup
-          #setup data
+      #setup data
       #questions
       @question1 = FactoryGirl.create(:question, question: 'Q1')
       @question2 = FactoryGirl.create(:question, question: 'Q2')

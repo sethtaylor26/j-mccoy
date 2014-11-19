@@ -24,4 +24,8 @@ class PotentialAnswer < ActiveRecord::Base
       else raise "Unknown file type: #{file.original_filename}"
     end
   end
+
+  def display_name
+    question.question + " " + answer
+  end
 end

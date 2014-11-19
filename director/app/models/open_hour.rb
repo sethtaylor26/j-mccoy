@@ -28,4 +28,7 @@ class OpenHour < ActiveRecord::Base
     end
   end
 
+  def display_name
+    day_of_the_week + " " + open_hour + " to " + close_hour
+  end
 end
