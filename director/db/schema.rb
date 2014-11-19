@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118143512) do
+ActiveRecord::Schema.define(version: 20141119024626) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -66,27 +66,29 @@ ActiveRecord::Schema.define(version: 20141118143512) do
   end
 
   create_table "events", force: true do |t|
-    t.integer  "event_type_id",                  null: false
-    t.datetime "start_time",                     null: false
-    t.datetime "end_time",                       null: false
-    t.string   "title",                          null: false
+    t.integer  "event_type_id",                          null: false
+    t.datetime "start_time",                             null: false
+    t.datetime "end_time",                               null: false
+    t.string   "title",                                  null: false
     t.string   "short_review"
     t.text     "long_review"
     t.string   "web_site_url"
-    t.float    "location_lat",                   null: false
-    t.float    "location_long",                  null: false
+    t.float    "location_lat",                           null: false
+    t.float    "location_long",                          null: false
     t.string   "address"
-    t.integer  "spice",                          null: false
-    t.integer  "cost",                           null: false
+    t.integer  "spice",                                  null: false
+    t.integer  "cost",                                   null: false
     t.integer  "recommender_id"
     t.string   "image"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "general_hours",  default: false
+    t.boolean  "general_hours",          default: false
+    t.integer  "recommendation_type_id"
   end
 
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id"
+  add_index "events", ["recommendation_type_id"], name: "index_events_on_recommendation_type_id"
   add_index "events", ["recommender_id"], name: "index_events_on_recommender_id"
 
   create_table "open_hours", force: true do |t|

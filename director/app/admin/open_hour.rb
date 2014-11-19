@@ -14,7 +14,7 @@ ActiveAdmin.register OpenHour do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  # permit_params :list, :of, :attributes, :on, :model
+  permit_params :event_id, :day_of_the_week, :open_hour, :close_hour
   #
   # or
   #

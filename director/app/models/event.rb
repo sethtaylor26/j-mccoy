@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base    
   belongs_to :event_type
   belongs_to :recommender
+  belongs_to :recommendation_type
   
   has_many :open_hours
   
