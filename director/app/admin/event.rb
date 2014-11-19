@@ -4,7 +4,7 @@ ActiveAdmin.register Event do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :event_type_id, :start_time, :end_time, :title, :short_review, :long_review, :web_site_url, :location_lat, :location_long, :address, :spice, :cost, :recommender_id, :image, :comments, :general_hours, :recommendation_type_id
+  permit_params :general_hours, :recommender_id, :recommendation_type_id, :start_time, :end_time, :title, :short_review, :long_review, :web_site_url, :location_lat, :location_long, :address, :spice, :cost, :image, :comments
   #
   # or
   #
@@ -13,5 +13,27 @@ ActiveAdmin.register Event do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+
+  form(:html => { :multipart => true }) do |f|
+    f.inputs "Event" do
+      f.input :general_hours
+      f.input :recommender
+      f.input :recommendation_type
+      f.input :start_time
+      f.input :end_time
+      f.input :title
+      f.input :short_review
+      f.input :long_review
+      f.input :web_site_url
+      f.input :location_lat
+      f.input :location_long
+      f.input :address
+      f.input :spice
+      f.input :cost
+      f.input :image, :as => :file
+      f.input :comments
+    end
+    f.actions
+  end
 
 end
