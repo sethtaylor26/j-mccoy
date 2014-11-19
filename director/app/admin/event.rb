@@ -14,6 +14,21 @@ ActiveAdmin.register Event do
   #   permitted
   # end
 
+  index do
+    selectable_column
+    column :title
+    column :event_type
+    column :general_hours
+    column :start_time
+    column :end_time
+    column :short_review
+    column :spice
+    column :cost
+    column :recommender
+    column :recommendation_type
+    actions
+  end
+
   form(:html => { :multipart => true }) do |f|
     f.inputs "Event" do
       f.input :event_type
