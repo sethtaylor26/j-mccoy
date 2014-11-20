@@ -4,9 +4,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    
     user = User.find(current_user)
-    if request.format.html?
+    if !params[:start_time].present? || !params[:end_time].present? || !params[:spice].present? || !params[:cost].present?
       @events = Event.all
       return
     end
