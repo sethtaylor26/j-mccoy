@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119024626) do
+ActiveRecord::Schema.define(version: 20141120234935) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20141119024626) do
 
   create_table "events", force: true do |t|
     t.integer  "event_type_id",                          null: false
-    t.datetime "start_time",                             null: false
-    t.datetime "end_time",                               null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "title",                                  null: false
     t.string   "short_review"
     t.text     "long_review"

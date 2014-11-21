@@ -6,8 +6,6 @@ class Event < ActiveRecord::Base
   has_many :open_hours
   
   validates :event_type_id, presence: true
-  validates :start_time, presence: true
-  validates :end_time, presence: true
   validates :title, presence: true
   validates :location_lat, presence: true
   validates :location_long, presence: true
