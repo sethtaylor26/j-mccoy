@@ -1,12 +1,12 @@
 # config valid only for Capistrano 3.1
-lock '3.2.0'
+lock '3.2.1'
 
 set :application, 'director'
 set :repo_url, 'git@github.com:sethtaylor26/j-mccoy.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, 'cap'
+set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/my_app'
