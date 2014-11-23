@@ -11,7 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107193123) do
+ActiveRecord::Schema.define(version: 20141120234935) do
+
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "admin_users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "event_type_answer_weights", force: true do |t|
     t.integer  "potential_answer_id", null: false
@@ -33,27 +66,29 @@ ActiveRecord::Schema.define(version: 20141107193123) do
   end
 
   create_table "events", force: true do |t|
-    t.integer  "event_type_id",                  null: false
-    t.datetime "start_time",                     null: false
-    t.datetime "end_time",                       null: false
-    t.string   "title",                          null: false
+    t.integer  "event_type_id",                          null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "title",                                  null: false
     t.string   "short_review"
     t.text     "long_review"
     t.string   "web_site_url"
-    t.float    "location_lat",                   null: false
-    t.float    "location_long",                  null: false
+    t.float    "location_lat",                           null: false
+    t.float    "location_long",                          null: false
     t.string   "address"
-    t.integer  "spice",                          null: false
-    t.integer  "cost",                           null: false
+    t.integer  "spice",                                  null: false
+    t.integer  "cost",                                   null: false
     t.integer  "recommender_id"
     t.string   "image"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "general_hours",  default: false
+    t.boolean  "general_hours",          default: false
+    t.integer  "recommendation_type_id"
   end
 
   add_index "events", ["event_type_id"], name: "index_events_on_event_type_id"
+  add_index "events", ["recommendation_type_id"], name: "index_events_on_recommendation_type_id"
   add_index "events", ["recommender_id"], name: "index_events_on_recommender_id"
 
   create_table "open_hours", force: true do |t|

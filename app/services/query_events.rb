@@ -1,7 +1,7 @@
 class QueryEvents
 
-  def call(params)
-
+  def call(params, user)
+    @user = user
     @params = params
 
     rslt = validate
@@ -10,9 +10,13 @@ class QueryEvents
     end
     
     initialize_query
-    filter
+    logistics_filter
 
-    result(true, nil, @events + @events_hrs)
+    @initial_list = @events + @events_hrs
+
+    filter_top_events_by_weight
+
+    result(true, nil, @list_prefs)
   end
 
   def initialize_query
@@ -20,8 +24,8 @@ class QueryEvents
     @events_hrs = Event.where(general_hours: true)
   end
 
-  def filter
-    return unless @params[:start_time].present? and
+  def logistics_filter
+    return unless @params[:start_time].present? &&
       @params[:end_time].present?
 
     # static
@@ -61,11 +65,11 @@ class QueryEvents
     errors = []
     
     #"controller"=>"events", "action"=>"index"
-    if @params[:controller] == 'events' and
-       @params[:action] == 'index' and
-       @params[:start_time].nil? and
-       @params[:end_time].nil? and
-       @params[:cost].nil? and
+    if @params[:controller] == 'events' &&
+       @params[:action] == 'index' &&
+       @params[:start_time].nil? &&
+       @params[:end_time].nil? &&
+       @params[:cost].nil? &&
        @params[:spice].nil?
       return result(true)
     end
@@ -92,12 +96,31 @@ class QueryEvents
     end
   end
 
-  def find_top_events_by_weight
-  	return unless @params[:top_events]
-    #@event_type_answer_weights = EventTypeAnswerWeight.where(nil)
-    #@user_answers = UserAnswer.joins(potential_answer: :event_type_answer_weights)
+  def filter_top_events_by_weight
+
+    @etaw = EventTypeAnswerWeight
+      .select('event_type_answer_weights.event_type_id, sum(event_type_answer_weights.weight) as total')
+      .joins(:user_answers)
+      .where('user_answers.user_id = ?', @user.id)
+      .group('event_type_answer_weights.event_type_id')
+      .order('total DESC')
+
+    count = 3
+    if @params[:count].present?
+      count = @params[:count].to_i
+    end
+
+    @list_prefs ||= []
     
-    #@event_type_answer_weights = EventTypeAnswerWeight.joins(:user_answers)
-    #@event_type_weights = EventTypeAnswerWeight.joins("INNER JOIN user_answers ON user_answers.potential_answer_id = event_type_answer_weights.potential_answer_id").group("event_type_id")
+    @etaw.each do |i|
+      @initial_list.each do |l|
+        if l.event_type_id == i.event_type_id
+          @list_prefs << l
+        end
+        break if @list_prefs.length >= count
+      end
+      break if @list_prefs.length >= count
+    end
+
   end
 end

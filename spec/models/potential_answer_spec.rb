@@ -14,7 +14,6 @@ RSpec.describe PotentialAnswer, :type => :model do
   end
 
   it 'checks relationships' do
-    pending 'figure out how to create users via spec for creating user_answers'
     #test has_many relationships
     potential_answer = FactoryGirl.create(:potential_answer)
     event_type_answer_weight = FactoryGirl.create(:event_type_answer_weight, potential_answer_id: potential_answer.id)

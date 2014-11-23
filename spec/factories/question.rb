@@ -3,4 +3,5 @@ FactoryGirl.define do
     question 'This is one'
     question_type 'YN'
   end
+
 end

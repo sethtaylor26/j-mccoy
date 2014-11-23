@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   before_save :ensure_authentication_token
 
+  def display_name
+  	email
+  end
+
 end

@@ -4,7 +4,12 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    rslt = QueryEvents.new.call(params)
+    user = User.find(current_user)
+    if !params[:start_time].present? || !params[:end_time].present? || !params[:spice].present? || !params[:cost].present?
+      @events = Event.all
+      return
+    end
+    rslt = QueryEvents.new.call(params, user)
     if rslt.success
       @events = rslt.obj
     end
@@ -77,6 +82,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:event_type_id, :start_time, :end_time, :title, :short_review, :long_review, :web_site_url, :location_lat, :location_long, :address, :spice, :cost, :recommender_id, :image, :comments, :general_hours)
+      params.require(:event).permit(:event_type_id, :start_time, :end_time, :title, :short_review, :long_review, :web_site_url, :location_lat, :location_long, :address, :spice, :cost, :recommender_id, :image, :comments, :general_hours, :recommendation_type_id)
     end
 end

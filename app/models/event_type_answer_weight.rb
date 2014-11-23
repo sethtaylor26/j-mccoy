@@ -1,6 +1,7 @@
 class EventTypeAnswerWeight < ActiveRecord::Base
   belongs_to :potential_answer
   belongs_to :event_type
+  has_many :user_answers, through: :potential_answer
   
   validates :event_type_id, presence: true
   validates :potential_answer_id, presence: true
@@ -23,6 +24,10 @@ class EventTypeAnswerWeight < ActiveRecord::Base
       when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
       else raise "Unknown file type: #{file.original_filename}"
     end
+  end
+
+  def display_name
+    potential_answer.question.question + " - " + event_type.event_type_name + " - " + weight.to_s
   end
   
 end

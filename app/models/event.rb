@@ -1,12 +1,11 @@
 class Event < ActiveRecord::Base    
   belongs_to :event_type
   belongs_to :recommender
+  belongs_to :recommendation_type
   
   has_many :open_hours
   
   validates :event_type_id, presence: true
-  validates :start_time, presence: true
-  validates :end_time, presence: true
   validates :title, presence: true
   validates :location_lat, presence: true
   validates :location_long, presence: true
