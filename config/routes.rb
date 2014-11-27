@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
   
+  api vendor_string: "director", default_version: 1 do
+    version 1 do
+      cache as: 'v1' do
+        resources :event_types
+        resources :user_answers
+      end
+    end
+  end
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  
   resources :open_hours do
     collection { post :import }
   end
@@ -39,7 +49,7 @@ Rails.application.routes.draw do
   resources :event_types do
     collection { post :import }
   end
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

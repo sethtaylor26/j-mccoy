@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
@@ -54,6 +53,10 @@ gem 'chronic'
 
 #admin page generation
 gem 'activeadmin', github: 'activeadmin'
+
+#api
+gem "api-versions", "~> 1.0"
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'spring-commands-rspec'
