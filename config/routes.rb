@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       cache as: 'v1' do
         resources :event_types
         resources :user_answers
+        resources :events
+        resources :questions
       end
     end
   end
