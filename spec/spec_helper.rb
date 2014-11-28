@@ -1,4 +1,5 @@
 # defaults
+require 'rails_helper'
 RSpec.configure do |config|
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

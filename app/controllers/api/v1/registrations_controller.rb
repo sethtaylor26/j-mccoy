@@ -1,4 +1,4 @@
-class Api::RegistrationsController < Api::BaseApiController
+class Api::V1::RegistrationsController < Api::BaseApiController
   
   respond_to :json
   

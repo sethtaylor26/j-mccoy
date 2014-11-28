@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         resources :user_answers
         resources :events
         resources :questions
+
+        match "register" => "registrations#create", via: :post
       end
     end
   end
@@ -35,8 +37,6 @@ Rails.application.routes.draw do
   resources :recommendation_types
 
   devise_scope :users do
-    #post "api/v1/register" => "api/registrations#create"
-    match "api/register" => "api/registrations#create", via: :post
     match "api/v1/session" => "api/sessions#create", via: :post
   end
   

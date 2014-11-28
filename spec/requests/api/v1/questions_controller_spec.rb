@@ -38,9 +38,9 @@ RSpec.describe Api::V1::QuestionsController do
 
       expect(response).to be_success
 
-      expect(json["id"]).to eq 1
-      expect(json["question"]).to eq "question 1"
-      expect(json["question_type"]).to eq "YN"
+      expect(json["question"]["id"]).to eq 1
+      expect(json["question"]["question"]).to eq "question 1"
+      expect(json["question"]["question_type"]).to eq "YN"
     end
   end
 
@@ -52,9 +52,9 @@ RSpec.describe Api::V1::QuestionsController do
 
       expect(response).to be_success
 
-      expect(json["id"]).to eq 1
-      expect(json["question"]).to eq "question 1 update"
-      expect(json["question_type"]).to eq "YN"
+      expect(json["question"]["id"]).to eq 1
+      expect(json["question"]["question"]).to eq "question 1 update"
+      expect(json["question"]["question_type"]).to eq "YN"
 
     end
   end
