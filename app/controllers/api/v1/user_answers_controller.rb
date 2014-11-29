@@ -12,10 +12,6 @@ class Api::V1::UserAnswersController < Api::BaseApiController
     respond_with UserAnswer.find(params[:id])
   end
 
-  def new
-    respond_with UserAnswer.new
-  end
-
   def create
     respond_with UserAnswer.create(user_answer_params)
   end

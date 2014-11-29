@@ -21,13 +21,6 @@ class Api::V1::EventsController < Api::BaseApiController
     respond_with Event.find(params[:id])
   end
 
-  def new
-    @event = Event.new
-  end
-
-  def edit
-  end
-
   def create
     respond_with Event.create(event_params)
   end

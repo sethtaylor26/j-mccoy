@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::QuestionsController do
 
-  before do
-  	sign_in_as_a_valid_user
-  end
-
   describe "GET 'index'" do
     
     it "gets the expected values" do

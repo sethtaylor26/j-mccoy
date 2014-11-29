@@ -12,10 +12,6 @@ class Api::V1::EventTypesController < Api::BaseApiController
     respond_with EventType.find(params[:id])
   end
 
-  def new
-    @event_type = EventType.new
-  end
-
   def create
     respond_with EventType.create(event_type_params)
   end

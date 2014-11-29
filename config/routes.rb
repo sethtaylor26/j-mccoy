@@ -7,6 +7,11 @@ Rails.application.routes.draw do
         resources :user_answers
         resources :events
         resources :questions
+        resources :potential_answers
+        resources :open_hours
+        resources :recommenders
+        resources :recommendation_types
+        resources :event_type_answer_weights
 
         match "register" => "registrations#create", via: :post
       end
