@@ -13,6 +13,8 @@ RSpec.describe Api::V1::QuestionsController do
       expect(response).to be_success
 
       expect(json['questions'][0]['id']).to eq question.id
+      expect(json['questions'][0]['question']).to eq question.question
+      expect(json['questions'][0]['question_type']).to eq question.question_type
 
     end
 
@@ -34,9 +36,6 @@ RSpec.describe Api::V1::QuestionsController do
 
       expect(response).to be_success
 
-      expect(json["question"]["id"]).to eq 1
-      expect(json["question"]["question"]).to eq "question 1"
-      expect(json["question"]["question_type"]).to eq "YN"
     end
   end
 
@@ -47,10 +46,6 @@ RSpec.describe Api::V1::QuestionsController do
       put "/api/questions/#{question.id}", {"question" => {"question" => "question 1 update", "question_type" => "YN"}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
       expect(response).to be_success
-
-      expect(json["question"]["id"]).to eq 1
-      expect(json["question"]["question"]).to eq "question 1 update"
-      expect(json["question"]["question_type"]).to eq "YN"
 
     end
   end

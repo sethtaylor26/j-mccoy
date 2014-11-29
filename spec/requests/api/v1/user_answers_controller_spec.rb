@@ -10,11 +10,11 @@ RSpec.describe Api::V1::UserAnswersController do
 
       get '/api/user_answers', {}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
-      rslt = JSON.parse(response.body)
+      expect(response).to be_success
 
-      expect(rslt["user_answers"][0]["id"]).to eq 1
-      expect(rslt["user_answers"][0]["user_id"]).to eq 1
-      expect(rslt["user_answers"][0]["potential_answer_id"]).to eq 1
+      expect(json["user_answers"][0]["id"]).to eq 1
+      expect(json["user_answers"][0]["user_id"]).to eq 1
+      expect(json["user_answers"][0]["potential_answer_id"]).to eq 1
     end
   end
 
@@ -22,11 +22,8 @@ RSpec.describe Api::V1::UserAnswersController do
   	it "posts with the expected values" do
   	  post '/api/user_answers', {"user_answer" => {"user_id" => 1,"potential_answer_id" => 1}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
-      rslt = JSON.parse(response.body)
+      expect(response).to be_success
 
-      expect(rslt["user_answer"]["id"]).to eq 1
-      expect(rslt["user_answer"]["user_id"]).to eq 1
-      expect(rslt["user_answer"]["potential_answer_id"]).to eq 1
     end
   end
 
@@ -37,11 +34,7 @@ RSpec.describe Api::V1::UserAnswersController do
 
       put "/api/user_answers/#{user_answer.id}", {"user_answer" => {"user_id" => 1, "potential_answer_id" => 2}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
-      rslt = JSON.parse(response.body)
-
-      expect(rslt["user_answer"]["id"]).to eq 1
-      expect(rslt["user_answer"]["user_id"]).to eq 1
-      expect(rslt["user_answer"]["potential_answer_id"]).to eq 2
+      expect(response).to be_success
 
     end
   end

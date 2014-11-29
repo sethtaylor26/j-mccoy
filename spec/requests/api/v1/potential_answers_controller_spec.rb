@@ -36,9 +36,6 @@ RSpec.describe Api::V1::PotentialAnswersController do
 
       expect(response).to be_success
 
-      expect(json["potential_answer"]["id"]).to eq 1
-      expect(json["potential_answer"]["question_id"]).to eq 1
-      expect(json["potential_answer"]["answer"]).to eq "answer 1"
     end
   end
 
@@ -49,10 +46,6 @@ RSpec.describe Api::V1::PotentialAnswersController do
       put "/api/potential_answers/#{potential_answer.id}", {"potential_answer" => {"question_id" => 1, "answer" => "answer 1 update"}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
       expect(response).to be_success
-
-      expect(json["potential_answer"]["id"]).to eq 1
-      expect(json["potential_answer"]["question_id"]).to eq 1
-      expect(json["potential_answer"]["answer"]).to eq "answer 1 update"
 
     end
   end

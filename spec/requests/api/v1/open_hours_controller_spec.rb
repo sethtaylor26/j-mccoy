@@ -38,11 +38,6 @@ RSpec.describe Api::V1::OpenHoursController do
 
       expect(response).to be_success
 
-      expect(json['open_hour']['id']).to eq 1
-      expect(json['open_hour']['event_id']).to eq 1
-      expect(json['open_hour']['day_of_the_week']).to eq "Monday"
-      expect(json['open_hour']['open_hour']).to eq "08:00"
-      expect(json['open_hour']['close_hour']).to eq "23:00"
     end
   end
 

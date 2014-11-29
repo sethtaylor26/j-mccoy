@@ -9,10 +9,12 @@ RSpec.describe Api::V1::EventTypesController do
 
       get '/api/event_types', {}, 'HTTP_ACCEPT' => 'application/vnd.director+json; version=1'
 
-      rslt = JSON.parse(response.body)
-      expect(rslt["event_types"][0]["id"]).to eq 1
-      expect(rslt["event_types"][0]["event_type_name"]).to eq 'Food'
-      expect(rslt["event_types"][0]["parent"]).to eq 1
+      expect(response).to be_success
+
+      expect(json["event_types"][0]["id"]).to eq 1
+      expect(json["event_types"][0]["event_type_name"]).to eq 'Food'
+      expect(json["event_types"][0]["parent"]).to eq 1
+      expect(json["event_types"][0]["image"]).to_not be nil
 
     end
   end
@@ -21,11 +23,8 @@ RSpec.describe Api::V1::EventTypesController do
   	it "posts with the expected values" do
   	  post '/api/event_types', {"event_type" => {"event_type_name" => "event name", "parent" => 1, "image" => Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/factories/images/myfile.jpg')))}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
-      rslt = JSON.parse(response.body)
+      expect(response).to be_success
 
-      expect(rslt["event_type"]["id"]).to eq 1
-      expect(rslt["event_type"]["event_type_name"]).to eq "event name"
-      expect(rslt["event_type"]["image"]).to_not be nil
     end
   end
 
@@ -35,10 +34,7 @@ RSpec.describe Api::V1::EventTypesController do
 
       put "/api/event_types/#{event_type.id}", {"event_type" => {"event_type_name" => "jim", "parent" => nil, "image" => "blah"}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
-      rslt = JSON.parse(response.body)
-
-      expect(rslt["event_type"]["id"]).to eq 1
-      expect(rslt["event_type"]["parent"]).to be nil
+      expect(response).to be_success
 
     end
   end

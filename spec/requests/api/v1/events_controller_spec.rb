@@ -55,9 +55,6 @@ RSpec.describe Api::V1::EventsController do
 
       expect(response).to be_success
 
-      expect(json["event"]).to_not be nil
-      expect(json["event"]["id"]).to eq 1
-      expect(json["event"]["image"]).to_not be nil
     end
   end
 
@@ -68,9 +65,6 @@ RSpec.describe Api::V1::EventsController do
       put "/api/events/#{event.id}", {"event" => {"event_type_id" => 1, "start_time" => "", "end_time" => "", "title" => "title update", "short_review" => "short review", "long_review" => "long review", "web_site_url" => "example.com", "location_lat" => 1.1, "location_long" => 1.2, "address" => "123 Main", "spice" => 1, "cost" => 1, "image" => Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/factories/images/myfile.jpg'))), "comments" => "comments", "general_hours" => 't'}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
       expect(response).to be_success
-
-      expect(json["event"]).to_not be nil
-      expect(json["event"]["title"]).to eq "title update"
 
     end
   end
