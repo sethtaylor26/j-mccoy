@@ -3,8 +3,8 @@ class AddQuestionIdToUserAnswer < ActiveRecord::Migration
     add_column :user_answers, :question_id, :integer
 
     UserAnswer.find_each do |answer|
-debugger
-		potential_answer = PotentialAnswer.find(answer.potential_answer_id)
+
+      potential_answer = PotentialAnswer.find(answer.potential_answer_id)
     	answer.question_id = potential_answer.question_id
     	answer.save!
     end
