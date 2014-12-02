@@ -20,7 +20,7 @@ RSpec.describe Api::V1::UserAnswersController do
 
   describe "POST 'index'" do
   	it "posts with the expected values" do
-  	  post '/api/user_answers', {"user_answer" => {"user_id" => 1,"potential_answer_id" => 1}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
+  	  post '/api/user_answers', {"user_answer" => {"user_id" => 1, "question_id" => 1, "potential_answer_id" => 1}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
       expect(response).to be_success
 
@@ -32,9 +32,11 @@ RSpec.describe Api::V1::UserAnswersController do
       user = FactoryGirl.create(:user)
       user_answer = FactoryGirl.create(:user_answer, user_id: user.id)
 
-      put "/api/user_answers/#{user_answer.id}", {"user_answer" => {"user_id" => 1, "potential_answer_id" => 2}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
+      put "/api/user_answers/#{user_answer.id}", {"user_answer" => {"user_id" => 1, "question_id" => 1,"potential_answer_id" => 2}}, 'HTTP_ACCEPT' => 'application/vnd.director+json;version=1'
 
       expect(response).to be_success
+
+      expect(json["user_answer"]["potential_answer_id"]).to eq 2
 
     end
   end

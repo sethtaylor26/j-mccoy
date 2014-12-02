@@ -33,6 +33,6 @@ class Api::V1::UserAnswersController < Api::BaseApiController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_answer_params
-      params.required(:user_answer).permit(:user_id, :potential_answer_id)
+      params.required(:user_answer).permit(:user_id, :question_id, :potential_answer_id)
     end
 end

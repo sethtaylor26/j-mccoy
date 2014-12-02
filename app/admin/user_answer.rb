@@ -4,6 +4,7 @@ ActiveAdmin.register UserAnswer do
     selectable_column
     column :id
     column :user
+    column :question
     column :potential_answer
     column :created_at
     column :updated_at
@@ -12,7 +13,7 @@ ActiveAdmin.register UserAnswer do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :user_id, :potential_answer_id
+  permit_params :user_id, :question_id, :potential_answer_id
   #
   # or
   #
