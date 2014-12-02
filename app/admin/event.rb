@@ -35,8 +35,8 @@ ActiveAdmin.register Event do
       f.input :general_hours
       f.input :recommender
       f.input :recommendation_type
-      f.input :start_time
-      f.input :end_time
+      f.input :start_time, :as => :datetime_picker
+      f.input :end_time, :as => :datetime_picker
       f.input :title
       f.input :short_review
       f.input :long_review
