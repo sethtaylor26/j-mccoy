@@ -17,10 +17,19 @@ ActiveAdmin.register EventType do
     f.inputs "EventType" do
       f.input :event_type_name
       f.input :parent
-      f.input :image, :as => :file
+      f.input :image, :as => :file, :hint => f.image_tag(f.object.image.url(:thumb))
     end
     f.actions
   end
 
+  show do
+    attributes_table do
+      row :event_type_name
+      row :parent
+      row :image do
+          image_tag event_type.image_url(:thumb)
+      end
+    end 
+  end
 
 end

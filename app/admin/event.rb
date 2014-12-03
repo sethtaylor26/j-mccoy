@@ -46,10 +46,42 @@ ActiveAdmin.register Event do
       f.input :address
       f.input :spice
       f.input :cost
-      f.input :image, :as => :file
+      if f.object.image?
+        f.input :image, :as => :file, :hint => f.image_tag(f.object.image.url(:thumb))
+      else
+        f.input :image, :as => :file, :hint => f.image_tag(f.object.event_type.image.url(:thumb))
+      end
       f.input :comments
     end
     f.actions
+  end
+
+  show do
+    attributes_table do
+      row :event_type
+      row :general_hours
+      row :recommender
+      row :recommendation_type
+      row :start_time, :as => :datetime_picker
+      row :end_time, :as => :datetime_picker
+      row :title
+      row :short_review
+      row :long_review
+      row :web_site_url
+      row :location_lat
+      row :location_long
+      row :address
+      row :spice
+      row :cost
+      row :image do
+        if event.image?
+          image_tag event.image_url(:thumb)
+        else
+          image_tag event.event_type.image_url(:thumb)
+        end
+      end
+      row :comments
+    end 
   end
 
 end
