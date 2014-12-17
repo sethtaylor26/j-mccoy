@@ -48,8 +48,10 @@ ActiveAdmin.register Event do
       f.input :cost
       if f.object.image?
         f.input :image, :as => :file, :hint => f.image_tag(f.object.image.url(:thumb))
+      #elsif f.object.event_type.image?
+      #  f.input :image, :as => :file, :hint => f.image_tag(f.object.event_type.image.url(:thumb))
       else
-        f.input :image, :as => :file, :hint => f.image_tag(f.object.event_type.image.url(:thumb))
+        f.input :image
       end
       f.input :comments
     end
