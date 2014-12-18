@@ -46,12 +46,12 @@ ActiveAdmin.register Event do
       f.input :address
       f.input :spice
       f.input :cost
-      if f.object.image?
-        f.input :image, :as => :file, :hint => f.image_tag(f.object.image.url(:thumb))
-      #elsif f.object.event_type.image?
-      #  f.input :image, :as => :file, :hint => f.image_tag(f.object.event_type.image.url(:thumb))
-      else
+      if f.object.new_record?
         f.input :image
+      elsif f.object.image?
+        f.input :image, :as => :file, :hint => f.image_tag(f.object.image.url(:thumb))
+      elsif f.object.event_type.image?
+        f.input :image, :as => :file, :hint => f.image_tag(f.object.event_type.image.url(:thumb))
       end
       f.input :comments
     end
