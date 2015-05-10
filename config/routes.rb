@@ -12,6 +12,7 @@ Rails.application.routes.draw do
         resources :recommenders
         resources :recommendation_types
         resources :event_type_answer_weights
+        resources :users
 
         match "register" => "registrations#create", via: :post
       end
